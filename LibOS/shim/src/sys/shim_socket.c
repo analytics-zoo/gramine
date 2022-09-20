@@ -1065,7 +1065,7 @@ static ssize_t do_sendmsg(int fd, struct iovec* bufs, int nbufs, int flags,
     if (hdl->type != TYPE_SOCK)
         goto out;
 
-    if (flags & ~(MSG_NOSIGNAL | MSG_DONTWAIT)) {
+    if (flags & ~(MSG_NOSIGNAL | MSG_DONTWAIT | MSG_MORE)) {
         log_warning("sendmsg()/sendmmsg()/sendto(): unknown flag (only MSG_NOSIGNAL and "
                     "MSG_DONTWAIT are supported).");
         ret = -EOPNOTSUPP;
@@ -1337,7 +1337,7 @@ static ssize_t do_recvmsg(int fd, struct iovec* bufs, size_t nbufs, int flags,
         expected_size += bufs[i].iov_len;
     }
 
-    if (flags & ~(MSG_PEEK | MSG_DONTWAIT | MSG_WAITALL)) {
+    if (flags & ~(MSG_PEEK | MSG_DONTWAIT | MSG_WAITALL | MSG_MORE)) {
         log_warning("recvmsg()/recvmmsg()/recvfrom(): unknown flag (only MSG_PEEK, MSG_DONTWAIT and"
                     " MSG_WAITALL are supported).");
         ret = -EOPNOTSUPP;

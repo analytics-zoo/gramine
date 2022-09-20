@@ -118,11 +118,13 @@ enum {
     MSG_DONTWAIT = 0x40,   /* Nonblocking IO. */
     MSG_WAITALL  = 0x100,  /* Wait for full request or error */
     MSG_NOSIGNAL = 0x4000, /* Do not generate SIGPIPE. */
+    MSG_MORE     = 0x8000,
 #define MSG_OOB      MSG_OOB
 #define MSG_PEEK     MSG_PEEK
 #define MSG_DONTWAIT MSG_DONTWAIT
 #define MSG_WAITALL  MSG_WAITALL
 #define MSG_NOSIGNAL MSG_NOSIGNAL
+#define MSG_MORE     MSG_MORE
 };
 
 struct msghdr {
